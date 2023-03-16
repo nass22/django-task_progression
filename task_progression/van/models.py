@@ -15,5 +15,3 @@ class Work_tracking(models.Model):
     work_progress_done = models.TextField(max_length=None)
     pictures = models.ImageField(upload_to='images/van/')
     finish = models.BooleanField(default=False)
-    
-    
