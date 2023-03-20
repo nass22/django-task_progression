@@ -1,4 +1,9 @@
 /* Extra small devices (phones, 600px and down) */
+@font-face {
+    font-family: "Jacksilver";
+    src: url("fonts/Jacksilver.otf") format("opentype");
+}
+
 @media only screen and (max-width: 600px) {
     ...
 }
@@ -24,27 +29,29 @@
         background-size: cover;
         color: white;
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
+        /* font-family: Arial, Helvetica, sans-serif; */
     }
     
     .center{
         position: fixed;
+        top: 50%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
     
     .head_title{
-        margin-top: 35rem;
-        background-color: red;
         width: 100%;
     }
     
     h1{
-        font-family: 'Libre Barcode 39 Extended Text', cursive;
+        /* font-family: 'Libre Barcode 39 Extended Text'; */
+        font-family: 'Jacksilver';
         font-size: 100px !important;
-        background-color: white;
-        
+        /* background-color: white; */
+        color:aliceblue !important;
+        opacity: 60% !important;
+        padding-top: 5rem;
     }
 }
 

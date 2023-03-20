@@ -14,14 +14,14 @@ class Van(models.Model):
         return name
 
 class Work_tracking(models.Model):
-    van = models.ForeignKey('van', on_delete=models.CASCADE)
+    van = models.ForeignKey(Van, on_delete=models.CASCADE)
     tracking_id = models.UUIDField(primary_key=False, default=uuid.uuid4)
     work_progress_percentage = models.IntegerField()
     work_progress_done = models.TextField(max_length=None)
     finish = models.BooleanField(default=False)
     
 class Img_tracking(models.Model):
-    van = models.ForeignKey('van', on_delete=models.CASCADE)
+    van = models.ForeignKey(Van, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='images/van/')
     
 
