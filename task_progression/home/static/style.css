@@ -1,0 +1,53 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    ...
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    ...
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    ...
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    ...
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body{
+        background: url("images/bg.jpg") no-repeat center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        color: white;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .center{
+        position: fixed;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    .head_title{
+        margin-top: 35rem;
+        background-color: red;
+        width: 100%;
+    }
+    
+    h1{
+        font-family: 'Libre Barcode 39 Extended Text', cursive;
+        font-size: 100px !important;
+        background-color: white;
+        
+    }
+}
+
+
+
+
