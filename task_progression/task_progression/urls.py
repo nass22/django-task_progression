@@ -16,8 +16,10 @@ Including another URLconf
 from django import views
 from django.contrib import admin
 from django.urls import include, path
+from van import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('van/<uuid:tracking_id>/', views.tracking),
 ]

@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>The Van Lab - Van Tracking</title>
+        <link rel="stylesheet" href="{% static 'van/style.css' %}" />
+
+        {% comment %} BOOTSTRAP CSS {% endcomment %}
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous"
+        />
+
+        {% comment %} GOOGLE FONTS {% endcomment %}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap"
+        rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row mt-5">
+            <div class="card">
+                <div class="img_div">
+                <img
+                    src="{% static 'van/images/van.jpg' %}"
+                    class="card-img-top"
+                    alt="..."
+                />
+                </div>
+
+                <div class="card-body">
+                    <h2 class="card-title">Hello {{van_tracking.van}}</h2>
+
+                    <div class="card w-75 my-3 mx-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Vos travaux demandés:</h5>
+                            
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                    
+                    <h5 class="card-text mt-4">Evolution de votre van:</h5>
+        
+                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van_tracking.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van_tracking.work_progress_percentage}}%"></div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{van_tracking.van.work_requested}}</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                    
+                </div>
+            </div>
+            <h2></h2>
+            </div>
+        </div>
+
+        {% comment %} <img src="{% static 'home/images/bg.jpg' %}" /> {% endcomment
+        %} {% comment %} <a href="{% url 'menu:index' %}">Voir le menu</a> {%
+        endcomment %} {% comment %} BOOTSTRAP JS {% endcomment %}
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
