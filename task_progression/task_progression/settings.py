@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
-    'customer.apps.CustomerConfig'
-    'customer.apps.VanConfig',
+    'django.contrib.staticfiles',
+    'customer.apps.CustomerConfig',
+    'van.apps.VanConfig',
 ]
 
 MIDDLEWARE = [
