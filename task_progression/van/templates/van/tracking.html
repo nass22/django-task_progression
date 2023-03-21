@@ -58,39 +58,75 @@
                         <li class="list-group-item">{{work.created_at|date:"d-m-Y H:i:s"}}: <b>{{work.work_progress_done}}</b></li>
                     {% endfor %}
                 </ul>
+                <h1>{{img_tracking.count}}</h1>
+                <p>{{img_tracking|first}}</p>
 
-                <div class="card-body">                    
-                    <div id="carouselExampleIndicators" class="carousel slide">
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            {% for img in img_tracking %}
-                                <div class="carousel-item active">
-                                    <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
+                {% if img_tracking.count > 0 %}
+                    
+                    {% if img_tracking.count == 1 %}
+                    
+                        <div class="card-body">                    
+                            <div id="carouselExampleIndicators" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    {% for i in img_tracking %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
+                                <div class="carousel-inner">
+                                    {% for img in img_tracking %}
+                                        <div class="carousel-item active">
+                                            <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
+                                        </div>
+                                    {% endfor %}
+                                        
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
-                </div>
+                    {% else %}
+                        <div class="card-body">                    
+                            <div id="carouselExampleIndicators" class="carousel slide">
+                                <div class="carousel-indicators">
+                                    {% for i in img_tracking %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
+                                    {% endfor %}
+                                </div>
+                                <div class="carousel-inner">
+                                    {% for img in img_tracking %}
+                                        <div class="carousel-item active">
+                                            <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
+                                        </div>
+                                    {% endfor %}
+                                        
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                        
+                    
+                {% endif %}
+                    
+
             </div>
             <h2></h2>
             </div>
         </div>
 
-        {% comment %} <img src="{% static 'home/images/bg.jpg' %}" /> {% endcomment
-        %} {% comment %} <a href="{% url 'menu:index' %}">Voir le menu</a> {%
-        endcomment %} {% comment %} BOOTSTRAP JS {% endcomment %}
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
