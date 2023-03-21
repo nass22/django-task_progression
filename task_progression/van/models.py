@@ -31,8 +31,11 @@ class Work_tracking(models.Model):
         return name
     
 class Img_tracking(models.Model):
+    def path_upload_to(instance, filename):
+        return 'images/van/{}/{}'.format(instance.van.id, filename)
+    
     van = models.ForeignKey(Van, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='images/van/')
+    picture = models.ImageField(upload_to=path_upload_to)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
