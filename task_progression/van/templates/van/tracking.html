@@ -4,7 +4,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8" />
-        <title>The Van Lab - Van Tracking</title>
+        <title>The Van Lab - Van Tracking {{van.tracking_id}}</title>
         <link rel="stylesheet" href="{% static 'van/style.css' %}" />
 
         {% comment %} BOOTSTRAP CSS {% endcomment %}
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row mt-5">
             <div class="card">
-                <h2 class="card-title p-3">Hello {{van_tracking.van}}</h2>
+                <h2 class="card-title p-3">Hello {{van.customer}}</h2>
                 <div class="img_div">
                     
                     <img
@@ -42,21 +42,21 @@
                         <div class="card-body">
                             <h5 class="card-title">Vos travaux demandés:</h5>
                             <ul class="card-text">
-                                <li>{{van_tracking.van.work_requested}}</li>
+                                <li>{{van.work_requested}}</li>
                             </ul>
                         </div>
                     </div>
                     
                     <h5 class="card-text mt-4">Evolution de votre van:</h5>
         
-                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van_tracking.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van_tracking.work_progress_percentage}}%;">{{van_tracking.work_progress_percentage}}%</div>
+                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van.work_progress_percentage}}%;">{{van.work_progress_percentage}}%</div>
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{van_tracking.work_progress_done}}</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    {% for work in work_tracking %}
+                        <li class="list-group-item">{{work.created_at|date:"d-m-Y H:i:s"}}: <b>{{work.work_progress_done}}</b></li>
+                    {% endfor %}
                 </ul>
                 <div class="card-body">
                     
