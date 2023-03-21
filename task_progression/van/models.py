@@ -19,6 +19,8 @@ class Work_tracking(models.Model):
     work_progress_percentage = models.IntegerField()
     work_progress_done = models.TextField(max_length=None)
     finish = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         name = str(self.van)
@@ -27,6 +29,8 @@ class Work_tracking(models.Model):
 class Img_tracking(models.Model):
     van = models.ForeignKey(Van, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='images/van/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         name = str(self.van)

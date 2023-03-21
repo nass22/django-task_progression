@@ -27,33 +27,34 @@
         <div class="container">
             <div class="row mt-5">
             <div class="card">
+                <h2 class="card-title p-3">Hello {{van_tracking.van}}</h2>
                 <div class="img_div">
-                <img
-                    src="{% static 'van/images/van.jpg' %}"
-                    class="card-img-top"
-                    alt="..."
-                />
+                    
+                    <img
+                        src="{% static 'van/images/van.jpg' %}"
+                        class="card-img-top"
+                        alt="..."
+                    />
                 </div>
 
-                <div class="card-body">
-                    <h2 class="card-title">Hello {{van_tracking.van}}</h2>
-
+                <div class="card-body mb-2">
                     <div class="card w-75 my-3 mx-auto">
                         <div class="card-body">
                             <h5 class="card-title">Vos travaux demandés:</h5>
-                            
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <ul class="card-text">
+                                <li>{{van_tracking.van.work_requested}}</li>
+                            </ul>
                         </div>
                     </div>
                     
                     <h5 class="card-text mt-4">Evolution de votre van:</h5>
         
                     <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van_tracking.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van_tracking.work_progress_percentage}}%"></div>
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van_tracking.work_progress_percentage}}%;">{{van_tracking.work_progress_percentage}}%</div>
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{van_tracking.van.work_requested}}</li>
+                    <li class="list-group-item">{{van_tracking.work_progress_done}}</li>
                     <li class="list-group-item">A second item</li>
                     <li class="list-group-item">A third item</li>
                 </ul>
