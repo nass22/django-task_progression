@@ -8,6 +8,8 @@ class Van(models.Model):
     brand = models.CharField(max_length=200)
     model = models.CharField(max_length=200)
     work_requested = models.TextField(max_length=None)
+    tracking_id = models.UUIDField(primary_key=False, default=uuid.uuid4)
+    finish = models.BooleanField(default=False)
     
     def __str__(self):
         name = str(self.customer)
@@ -15,10 +17,9 @@ class Van(models.Model):
 
 class Work_tracking(models.Model):
     van = models.ForeignKey(Van, on_delete=models.CASCADE)
-    tracking_id = models.UUIDField(primary_key=False, default=uuid.uuid4)
     work_progress_percentage = models.IntegerField()
     work_progress_done = models.TextField(max_length=None)
-    finish = models.BooleanField(default=False)
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
