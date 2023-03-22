@@ -24,15 +24,24 @@
             </div>
             
             <div class="row mt-4 mx-auto">
-                <div class="col-8">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="tracking_id_label">Tracking ID</span>
-                        <input type="text" class="form-control" aria-label="Tracking ID" aria-describedby="tracking_id_label" id ="tracking_id" name="tracking_id">
-                      </div>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-light" type="submit">Search</button>
-                </div>
+                <form action ="" method="POST">
+                    {% csrf_token %}
+                    <div class="col-8">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="tracking_id_label">Email</span>
+                            <input type="email" class="form-control" aria-label="Email" aria-describedby="email" id ="email" name="email">
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="tracking_id_label">Tracking ID</span>
+                            <input type="text" class="form-control" aria-label="Tracking ID" aria-describedby="tracking_id_label" id ="tracking_id" name="tracking_id">
+                        </div>
+                    </div>
+                    <div class="col-8 text-center">
+                        <button class="btn btn-light " type="submit">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
