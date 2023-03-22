@@ -25,148 +25,97 @@
     </head>
     <body>
         <div class="container">
-            <div class="row mt-5">
-            <div class="card">
-                <h2 class="card-title p-3">Hello {{van.customer}}</h2>
-                <div class="img_div">
-                    
-                    <img
-                        src="{% static 'van/images/van.jpg' %}"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                </div>
+            
+                <div class="card">
+                    <div class="row">
+                        <h2 class="card-title p-3">Hello {{van.customer}}</h2>
+                        <div class="img_div">
+                            
+                            <img
+                                src="{% static 'van/images/van.jpg' %}"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                        </div>
+                    </div>
 
-                <div class="card-body mb-2">
-                    <div class="card w-75 my-3 mx-auto">
-                        <div class="card-body">
-                            <h5 class="card-title">Vos travaux demandés:</h5>
-                            <ul class="card-text">
-                                <li>{{van.work_requested}}</li>
+                    <div class="row mx-3 mt-3">
+                        <div class="parent">
+                            <h5>Vos travaux demandés:</h5>
+                        </div>
+                        <div>
+                            <ul>
+                                {% for work in work_requested  %}
+                                    <li>{{ work.work_request }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
-                    
-                    <h5 class="card-text mt-4">Evolution de votre van:</h5>
-        
-                    <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van.work_progress_percentage}}%;">{{van.work_progress_percentage}}%</div>
+
+                    <div class="row mx-3">
+                        <div class="parent">
+                            <h5 w-auto>Progression des travaux:</h5>
+                        </div>
+                        <div>
+                            <div class="progress " role="progressbar" aria-label="Animated striped example" aria-valuenow="{{van.work_progress_percentage}}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{van.work_progress_percentage}}%;">{{van.work_progress_percentage}}%</div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="row mx-3 mt-5">
+                        <div class="parent">
+                            <h5>Travaux effectués:</h5>
+                        </div>
+                        <div>
+                            <ul class="list-group list-group-flush">
+                                {% for work in work_tracking %}
+                                    <li class="list-group-item">{{work.created_at|date:"d-m-Y H:i:s"}}: <b>{{work.work_progress_done}}</b></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card-body bg-dark-subtle mt-5" style="min-height: 15rem;">
+                        <h3 class="text-center text-secondary">Gallery</h3>
+                        <div class="row">
+
+                            {% if img_tracking.count > 0 %}
+
+                                {% if img_tracking.count == 1 %}
+
+                                    {% for img in img_tracking %}
+                                        <div class="col-4">
+                                            <a href="{{ img.picture.url }}">
+                                                <img class="img-fluid rounded pb-1" data-toggle="lightbox" 
+                                                data-src="{{ img.picture.url }}" src="{{ img.picture.url }}" 
+                                                alt="screenshot">
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+
+                                {% else %}
+
+                                    <div class="card-body bg-dark-subtle mt-5">
+                                        <h3 class="text-center">Gallery</h3>
+                                        <div class="row">
+
+                                            {% for img in img_tracking %}
+                                                <div class="col-4">
+                                                    <a href="{{ img.picture.url }}">
+                                                        <img class="img-fluid rounded pb-1" data-toggle="lightbox" 
+                                                        data-src="{{ img.picture.url }}" src="{{ img.picture.url }}" 
+                                                        alt="screenshot">
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+
+                                {% endif %}
+                            {% else %}
+                                <h5 class="text-center mt-5">No photos at the moment</h5>
+                            {% endif %}
                 </div>
-                <ul class="list-group list-group-flush">
-                    {% for work in work_tracking %}
-                        <li class="list-group-item">{{work.created_at|date:"d-m-Y H:i:s"}}: <b>{{work.work_progress_done}}</b></li>
-                    {% endfor %}
-                </ul>
-
-                {% if img_tracking.count > 0 %}
-                    
-                    {% if img_tracking.count == 1 %}
-                    
-                        <div class="card-body bg-dark-subtle mt-5">
-                            <h3 class="text-center">Gallery</h3>
-                            <div class="row">
-                                {% for img in img_tracking %}
-                                <div class="col-4">
-                                    <a href="{{ img.picture.url }}">
-                                        <img class="img-fluid rounded pb-1" data-toggle="lightbox" 
-                                        data-src="{{ img.picture.url }}" src="{{ img.picture.url }}" 
-                                        alt="screenshot">
-                                    </a>
-                                </div>
-                                {% endfor %}
-                            </div>
-
-                            {% comment %} <div id="carouselExample" class="carousel slide">
-                                <div class="carousel-inner">
-                                {% for img in img_tracking %}
-                                    <div class="carousel-item active">
-                                        <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
-                                    </div>
-                                {% endfor %}
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Next</span>
-                                </button>
-                              </div> {% endcomment %}
-                            
-
-                            {% comment %} <div id="carouselExampleIndicators" class="carousel slide">
-                                <div class="carousel-indicators">
-                                    {% for i in img_tracking %}
-                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
-                                    {% endfor %}
-                                </div>
-                                <div class="carousel-inner">
-                                    {% for img in img_tracking %}
-                                        <div class="carousel-item active">
-                                            <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
-                                        </div>
-                                    {% endfor %}
-                                        
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div> {% endcomment %}
-                        </div>
-                    {% else %}
-                        <div class="card-body bg-dark-subtle mt-5">
-                            <h3 class="text-center">Gallery</h3>
-                            <div class="row">
-                                {% for img in img_tracking %}
-                                <div class="col-4">
-                                    <a href="{{ img.picture.url }}">
-                                        <img class="img-fluid rounded pb-1" data-toggle="lightbox" 
-                                        data-src="{{ img.picture.url }}" src="{{ img.picture.url }}" 
-                                        alt="screenshot">
-                                    </a>
-                                </div>
-                                {% endfor %}
-                            </div>
-                            {% comment %} <div id="carouselExampleIndicators" class="carousel slide">
-                                <div class="carousel-indicators">
-                                    {% for i in img_tracking %}
-                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter}}" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
-                                    {% endfor %}
-                                </div>
-                                <div class="carousel-inner">
-                                    {% for img in img_tracking %}
-                                        <div class="carousel-item">
-                                            <img src="{{ img.picture.url }}" class="d-block w-100" alt="work_progress">
-                                        </div>
-                                    {% endfor %}
-                                        
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div> {% endcomment %}
-                        </div>
-                    {% endif %}
-                        
-                    
-                {% endif %}
-                    
-
-            </div>
-            <h2></h2>
-            </div>
+        </div>
         </div>
 
         <script
