@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'customer.apps.CustomerConfig',
     'van.apps.VanConfig',
+    'django_jsonform',
 ]
 
 MIDDLEWARE = [

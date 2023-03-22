@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Van, Work_tracking, Img_tracking
+from .models import Van, Work_tracking, Img_tracking, Work_requested
 
 # Register your models here.
 class ImgTrackingInline(admin.TabularInline):
@@ -10,6 +10,10 @@ class WorkTrackingInline(admin.TabularInline):
     # list_display = ('van', 'work_progress_done', 'created_at', 'updated_at')
     model = Work_tracking
     extra = 1
+    
+class WorkRequestInline(admin.TabularInline):
+    model = Work_requested
+    extra = 1
 
 # class VanAdmin(admin.ModelAdmin):
 #     list_display = ('customer', 'brand', 'model', 'tracking_id', 'work_progress_percentage', 'finish')
@@ -17,8 +21,9 @@ class WorkTrackingInline(admin.TabularInline):
 class VanAdmin(admin.ModelAdmin):
     list_display = ('customer', 'brand', 'model', 'tracking_id', 'work_progress_percentage', 'finish')
     inlines = [
+        WorkRequestInline,
         WorkTrackingInline, 
-        ImgTrackingInline, 
+        ImgTrackingInline,
     ]
     
 admin.site.register(Van, VanAdmin)
